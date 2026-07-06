@@ -130,11 +130,11 @@ cafe-app/
 - [x] `menus/detail.css`
 - [x] `menus/detail.js`
 
-### 4단계: 고객 - 장바구니 관리 시스템
+### 4단계: 고객 - 장바구니 관리 시스템 ✅
 
-- [ ] `basket/list.html` — 장바구니
-- [ ] `basket/list.css`
-- [ ] `basket/list.js`
+- [x] `basket/list.html` — 장바구니
+- [x] `basket/list.css`
+- [x] `basket/list.js`
 
 ### 5단계: 고객 - 주문 관리 시스템
 
