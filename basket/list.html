@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니 | Cafe App</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="list.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">Cafe App</a>
+      <nav class="nav-links" aria-label="고객 메뉴">
+        <a href="../menus/list.html">메뉴</a>
+        <a href="list.html" aria-current="page">장바구니 <span id="cartCount">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="hero glass">
+      <div>
+        <p class="eyebrow">Basket</p>
+        <h1>장바구니</h1>
+        <p>담아두신 메뉴를 확인하고 수량을 조절해보세요.</p>
+      </div>
+    </section>
+
+    <section class="basket-section" aria-label="장바구니 목록">
+      <div class="basket-list" id="basketList"></div>
+      <p class="empty-state glass" id="emptyState" hidden>장바구니가 비어있습니다. <a href="../menus/list.html">메뉴 보러가기</a></p>
+
+      <div class="summary-card glass" id="summaryCard">
+        <div class="summary-row">
+          <span>총 수량</span>
+          <strong id="totalCount">0개</strong>
+        </div>
+        <div class="summary-row total-row">
+          <span>합계</span>
+          <strong id="totalPrice">0원</strong>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" id="checkoutButton">주문하기</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="list.js"></script>
+</body>
+</html>
