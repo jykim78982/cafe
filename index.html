@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe App</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Cafe App</a>
+      <nav class="nav-links" aria-label="고객 메뉴">
+        <a href="menus/list.html">메뉴</a>
+        <a href="basket/list.html">장바구니 <span id="cartCount">0</span></a>
+        <a href="my/index.html">마이페이지</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="hero glass">
+      <div>
+        <p class="eyebrow">Cafe App</p>
+        <h1>정성으로 내리는<br>커피 한 잔의 여유</h1>
+        <p>신선한 원두와 매일 구운 디저트로 하루를 채워보세요.</p>
+        <a class="btn btn-primary hero-cta" href="menus/list.html">메뉴 보러가기</a>
+      </div>
+    </section>
+
+    <section class="highlight-section" aria-label="카페 소개">
+      <article class="highlight-card glass">
+        <p class="eyebrow">Coffee</p>
+        <h2>신선한 원두</h2>
+        <p>매일 아침 로스팅한 원두로 내린 향 깊은 커피를 만나보세요.</p>
+      </article>
+      <article class="highlight-card glass">
+        <p class="eyebrow">Dessert</p>
+        <h2>매일 굽는 디저트</h2>
+        <p>당일 제작한 케이크와 베이커리로 커피와 완벽한 조화를 이룹니다.</p>
+      </article>
+      <article class="highlight-card glass">
+        <p class="eyebrow">Space</p>
+        <h2>편안한 공간</h2>
+        <p>따뜻한 브라운 톤의 인테리어에서 여유로운 시간을 보내세요.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
