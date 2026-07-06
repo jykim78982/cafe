@@ -1,0 +1,68 @@
+.admin-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 48px;
+  max-width: 520px;
+}
+
+.detail-card {
+  padding: var(--spacing-lg);
+}
+
+.detail-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  background: var(--color-border);
+  margin-bottom: var(--spacing);
+  object-fit: cover;
+}
+
+.detail-category {
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.detail-price {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: var(--spacing);
+}
+
+.detail-desc {
+  margin-bottom: var(--spacing-lg);
+}
+
+.soldout-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-danger);
+  margin-left: 8px;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 8px;
+}
