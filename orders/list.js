@@ -160,7 +160,7 @@
             "<span>결제 금액</span>" +
             "<strong>" + CafeUtils.formatPrice(order.total) + "</strong>" +
           "</div>" +
-          "<span class=\"order-count\">" + order.items.length + "개 메뉴</span>" +
+          "<a class=\"btn btn-outline\" href=\"detail.html?id=" + encodeURIComponent(order.id) + "\">상세 보기</a>" +
         "</div>" +
       "</article>";
   }
