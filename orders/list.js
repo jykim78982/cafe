@@ -143,27 +143,28 @@
   }
 
   function renderOrder(order) {
-    return "" +
-      "<article class=\"order-card glass\">" +
-        "<div class=\"order-top\">" +
-          "<div>" +
-            "<p class=\"order-id\">주문번호 " + CafeUtils.escapeHtml(order.id) + "</p>" +
-            "<p class=\"order-date\">" + CafeUtils.escapeHtml(formatDate(order.createdAt)) + "</p>" +
-          "</div>" +
-          "<span class=\"status-chip " + getStatusClass(order.status) + "\">" +
-            CafeUtils.escapeHtml(getStatusLabel(order.status)) +
-          "</span>" +
+  return "" +
+    "<article class=\"order-card glass\">" +
+      "<div class=\"order-top\">" +
+        "<div>" +
+          "<p class=\"order-id\">주문번호 " + CafeUtils.escapeHtml(order.id) + "</p>" +
+          "<p class=\"order-date\">" + CafeUtils.escapeHtml(formatDate(order.createdAt)) + "</p>" +
         "</div>" +
-        "<ul class=\"order-items\">" + renderItems(order.items) + "</ul>" +
-        "<div class=\"order-footer\">" +
-          "<div class=\"order-total\">" +
-            "<span>결제 금액</span>" +
-            "<strong>" + CafeUtils.formatPrice(order.total) + "</strong>" +
-          "</div>" +
-          "<span class=\"order-count\">" + order.items.length + "개 메뉴</span>" +
+        "<span class=\"status-chip " + getStatusClass(order.status) + "\">" +
+          CafeUtils.escapeHtml(getStatusLabel(order.status)) +
+        "</span>" +
+      "</div>" +
+      "<ul class=\"order-items\">" + renderItems(order.items) + "</ul>" +
+      "<div class=\"order-footer\">" +
+        "<div class=\"order-total\">" +
+          "<span>결제 금액</span>" +
+          "<strong>" + CafeUtils.formatPrice(order.total) + "</strong>" +
         "</div>" +
-      "</article>";
-  }
+        "<span class=\"order-count\">" + order.items.length + "개 메뉴</span>" +
+        "<a class=\"btn btn-outline\" href=\"detail.html?id=" + encodeURIComponent(order.id) + "\">상세 보기</a>" +
+      "</div>" +
+    "</article>";
+}
 
   function render() {
     var allOrders = readOrders();
