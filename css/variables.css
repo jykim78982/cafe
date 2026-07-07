@@ -1,24 +1,25 @@
 /* 전역 CSS 변수 + 리셋. 모든 페이지가 공통으로 불러오는 유일한 전역 스타일시트입니다. */
+/* 디자인 톤: 파란만잔(xn--si2bp7bowuq9k.com) 스타일 참고 — 사진 중심의 미니멀 에디토리얼 무드 */
 :root {
-  --color-bg: #faf6f1;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-glass: rgba(255, 255, 255, 0.6);
-  --color-primary: #6f4e37;
-  --color-primary-dark: #4e3527;
-  --color-accent: #d98c4a;
-  --color-text: #2c2117;
-  --color-text-muted: #8a7c6f;
-  --color-border: #e6dcd0;
+  --color-surface-glass: rgba(255, 255, 255, 0.72);
+  --color-primary: #1a1a18;
+  --color-primary-dark: #000000;
+  --color-accent: #8a6a4f;
+  --color-text: #1a1a18;
+  --color-text-muted: #8f8b85;
+  --color-border: #ececea;
   --color-danger: #c0392b;
   --color-success: #2f9e44;
 
-  --radius-sm: 8px;
-  --radius: 14px;
-  --radius-lg: 20px;
-  --shadow: 0 4px 16px rgba(44, 33, 23, 0.08);
-  --shadow-glass: 0 8px 32px rgba(44, 33, 23, 0.12);
-  --blur-glass: 12px;
-  --max-width: 960px;
+  --radius-sm: 3px;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --blur-glass: 8px;
+  --max-width: 1080px;
   --spacing-sm: 8px;
   --spacing: 16px;
   --spacing-lg: 24px;
@@ -36,9 +37,10 @@ body {
 
 body {
   font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  background: linear-gradient(180deg, var(--color-bg), #f3ece3);
+  background: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.5;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
   min-height: 100vh;
 }
 
@@ -71,7 +73,7 @@ textarea {
   background: var(--color-surface-glass);
   backdrop-filter: blur(var(--blur-glass));
   -webkit-backdrop-filter: blur(var(--blur-glass));
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-glass);
 }
