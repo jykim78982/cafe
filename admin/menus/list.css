@@ -1,27 +1,35 @@
 .admin-header {
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .admin-header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: var(--spacing);
   min-height: 64px;
 }
 
 .logo {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-primary);
 }
 
 .admin-nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
+}
+
+.admin-header-spacer {
+  display: none;
 }
 
 .admin-nav a {
@@ -39,8 +47,38 @@
 }
 
 .page {
-  padding-top: var(--spacing-lg);
-  padding-bottom: 48px;
+  padding-top: 32px;
+  padding-bottom: 64px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.hero p:last-child {
+  color: var(--color-text-muted);
+  margin: 10px 0 0;
 }
 
 .tabs {
@@ -130,7 +168,27 @@
 @media (max-width: 760px) {
   .admin-header-inner {
     align-items: stretch;
+    display: flex;
     flex-direction: column;
     padding: var(--spacing) 16px;
+  }
+
+  .hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding-top: 24px;
+  }
+
+  .hero h1 {
+    font-size: 1.7rem;
   }
 }

@@ -7,9 +7,9 @@
 }
 
 .admin-header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: var(--spacing);
   min-height: 64px;
 }
@@ -23,8 +23,13 @@
 .admin-nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
+}
+
+.admin-header-spacer {
+  display: none;
 }
 
 .admin-nav a {
@@ -235,6 +240,7 @@
   .hero,
   .panel-heading {
     align-items: stretch;
+    display: flex;
     flex-direction: column;
   }
 

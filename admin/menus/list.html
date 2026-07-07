@@ -16,16 +16,23 @@
         <a href="list.html" aria-current="page">메뉴 관리</a>
         <a href="../orders/list.html">주문 관리</a>
       </nav>
-      <a href="create.html" class="btn btn-accent">+ 새 메뉴 등록</a>
+      <span class="admin-header-spacer" aria-hidden="true"></span>
     </div>
   </header>
 
-  <div class="container page">
-    <h1>메뉴 관리</h1>
+  <main class="container page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Menu Management</p>
+        <h1>메뉴 관리</h1>
+        <p>등록된 메뉴를 확인하고 가격, 품절 상태, 사진 정보를 관리합니다.</p>
+      </div>
+      <a href="create.html" class="btn btn-accent">+ 새 메뉴 등록</a>
+    </section>
     <div id="tabs" class="tabs"></div>
     <div id="menu-list" class="menu-grid"></div>
     <p id="empty-msg" class="empty-msg" style="display:none;">등록된 메뉴가 없습니다. "새 메뉴 등록"으로 추가해보세요.</p>
-  </div>
+  </main>
 
   <script src="../../js/data.js"></script>
   <script src="../../js/utils.js"></script>
