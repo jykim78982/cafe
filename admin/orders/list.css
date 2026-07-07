@@ -1,6 +1,9 @@
 .admin-header {
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .admin-header-inner {
@@ -39,12 +42,14 @@
 }
 
 .page {
-  padding-top: var(--spacing-lg);
-  padding-bottom: 56px;
+  padding-top: 32px;
+  padding-bottom: 64px;
 }
 
 .hero {
-  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 24px;
+  padding-bottom: 24px;
 }
 
 .eyebrow {
@@ -57,7 +62,7 @@
 }
 
 .hero h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   line-height: 1.2;
   margin: 0;
 }
@@ -71,7 +76,7 @@
   display: grid;
   grid-template-columns: minmax(220px, 1fr) 170px 170px;
   gap: var(--spacing);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 18px;
   padding: var(--spacing);
 }
 
@@ -110,7 +115,7 @@ a:focus-visible {
   justify-content: space-between;
   gap: var(--spacing);
   border-bottom: 1px solid var(--color-border);
-  padding: var(--spacing-lg);
+  padding: 20px 22px;
 }
 
 .panel-heading h2 {
@@ -132,11 +137,12 @@ a:focus-visible {
   align-items: center;
   border-bottom: 1px solid var(--color-border);
   color: inherit;
-  padding: var(--spacing) var(--spacing-lg);
+  min-height: 68px;
+  padding: var(--spacing) 22px;
 }
 
 a.table-row:hover {
-  background: rgba(26, 26, 24, 0.04);
+  background: rgba(26, 26, 24, 0.045);
 }
 
 .table-head {
@@ -182,7 +188,7 @@ a.table-row:hover {
   color: var(--color-text-muted);
   font-weight: 800;
   margin: 0;
-  padding: 48px 24px;
+  padding: 56px 24px;
   text-align: center;
 }
 
@@ -203,7 +209,8 @@ a.table-row:hover {
 
   .table-row {
     grid-template-columns: 1fr;
-    gap: 6px;
+    gap: 8px;
+    padding: var(--spacing);
   }
 
   .table-row span::before {
@@ -218,4 +225,19 @@ a.table-row:hover {
   .status-chip::before { content: "상태"; }
   .order-total::before { content: "주문 금액"; }
   .order-date::before { content: "주문 시간"; }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding-top: 24px;
+  }
+
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .toolbar,
+  .panel-heading {
+    padding: var(--spacing);
+  }
 }
