@@ -34,9 +34,13 @@
     emptyEl.style.display = "none";
 
     listEl.innerHTML = menus.map(function (m) {
+      var image = m.image
+        ? '<img src="' + CafeUtils.escapeHtml(CafeUtils.getMenuImageSrc(m.image)) + '" alt="' + CafeUtils.escapeHtml(m.name) + '">'
+        : "";
+
       return (
         '<div class="glass menu-card' + (m.soldOut ? " is-soldout" : "") + '">' +
-          '<div class="thumb"></div>' +
+          '<div class="thumb">' + image + "</div>" +
           '<div class="name">' + CafeUtils.escapeHtml(m.name) + (m.soldOut ? " (품절)" : "") + "</div>" +
           '<div class="category">' + CafeUtils.escapeHtml(m.category) + "</div>" +
           '<div class="price">' + CafeUtils.formatPrice(m.price) + "</div>" +

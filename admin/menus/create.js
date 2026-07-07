@@ -4,6 +4,17 @@
 
   var form = document.getElementById("create-form");
   var errorEl = document.getElementById("form-error");
+  var imageInput = document.getElementById("image");
+  var imagePreview = document.getElementById("image-preview");
+  var imagePath = "";
+
+  imageInput.addEventListener("change", function () {
+    var file = imageInput.files && imageInput.files[0];
+    imagePath = file ? "images/menus/" + file.name : "";
+    imagePreview.innerHTML = file
+      ? '<img src="' + URL.createObjectURL(file) + '" alt="선택한 메뉴 사진 미리보기">'
+      : "이미지 없음";
+  });
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -20,7 +31,8 @@
       name: name,
       category: document.getElementById("category").value,
       price: price,
-      description: document.getElementById("description").value.trim()
+      description: document.getElementById("description").value.trim(),
+      image: imagePath
     });
 
     window.location.href = "list.html";

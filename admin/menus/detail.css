@@ -27,11 +27,19 @@
 }
 
 .detail-thumb {
+  display: grid;
+  place-items: center;
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-sm);
   background: var(--color-border);
   margin-bottom: var(--spacing);
+  overflow: hidden;
+}
+
+.detail-thumb img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

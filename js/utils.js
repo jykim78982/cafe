@@ -14,6 +14,15 @@
     return div.innerHTML;
   }
 
+  function getMenuImageSrc(image) {
+    if (!image) return "";
+    if (/^(https?:|data:|blob:|\/)/.test(image)) return image;
+    if (/^(\.\.?\/)/.test(image)) return image;
+    if (location.pathname.indexOf("/admin/menus/") !== -1) return "../../" + image;
+    if (location.pathname.indexOf("/menus/") !== -1 || location.pathname.indexOf("/basket/") !== -1 || location.pathname.indexOf("/orders/") !== -1) return "../" + image;
+    return image;
+  }
+
   function getCart() {
     var raw = localStorage.getItem(CART_KEY);
     if (raw === null) return [];
@@ -75,6 +84,7 @@
   global.CafeUtils = {
     formatPrice: formatPrice,
     escapeHtml: escapeHtml,
+    getMenuImageSrc: getMenuImageSrc,
     getCart: getCart,
     saveCart: saveCart,
     addToCart: addToCart,
