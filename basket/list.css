@@ -216,6 +216,130 @@
   font-weight: 800;
 }
 
+.payment-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(26, 26, 24, 0.45);
+}
+
+.payment-overlay[hidden] {
+  display: none;
+}
+
+.payment-modal {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--spacing-lg);
+  background: #fff;
+}
+
+.payment-eyebrow {
+  margin: 0 0 6px;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.payment-modal h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.payment-desc {
+  margin: 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.payment-summary {
+  display: grid;
+  gap: 8px;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.015);
+}
+
+.payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing);
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.payment-total strong {
+  color: var(--color-text);
+  font-size: 1.3rem;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing);
+  margin-top: var(--spacing);
+  padding-top: var(--spacing);
+  border-top: 1px solid var(--color-border);
+}
+
+.payment-method-label {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.payment-method-value {
+  font-weight: 800;
+}
+
+.payment-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: var(--spacing-lg);
+}
+
+.payment-processing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: var(--spacing-lg);
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.payment-processing[hidden] {
+  display: none;
+}
+
+.payment-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: paymentSpin 0.7s linear infinite;
+}
+
+@keyframes paymentSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 760px) {
   .header-inner {
     align-items: stretch;
