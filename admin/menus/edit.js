@@ -18,6 +18,23 @@
 
   var form = document.getElementById("edit-form");
   var errorEl = document.getElementById("form-error");
+  var imageInput = document.getElementById("image");
+  var imagePreview = document.getElementById("image-preview");
+  var imagePath = menu.image || "";
+
+  function renderImagePreview(src) {
+    imagePreview.innerHTML = src
+      ? '<img src="' + CafeUtils.escapeHtml(src) + '" alt="메뉴 사진 미리보기">'
+      : "이미지 없음";
+  }
+
+  renderImagePreview(CafeUtils.getMenuImageSrc(imagePath));
+
+  imageInput.addEventListener("change", function () {
+    var file = imageInput.files && imageInput.files[0];
+    imagePath = file ? "images/menus/" + file.name : imagePath;
+    renderImagePreview(file ? URL.createObjectURL(file) : CafeUtils.getMenuImageSrc(imagePath));
+  });
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -35,6 +52,7 @@
       category: document.getElementById("category").value,
       price: price,
       description: document.getElementById("description").value.trim(),
+      image: imagePath,
       soldOut: document.getElementById("soldOut").checked
     });
 

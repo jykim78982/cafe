@@ -11,9 +11,13 @@
     return;
   }
 
+  var image = menu.image
+    ? '<img src="' + CafeUtils.escapeHtml(CafeUtils.getMenuImageSrc(menu.image)) + '" alt="' + CafeUtils.escapeHtml(menu.name) + '">'
+    : "";
+
   detailEl.innerHTML =
     '<div class="glass detail-card">' +
-      '<div class="detail-thumb"></div>' +
+      '<div class="detail-thumb">' + image + "</div>" +
       "<h1>" + CafeUtils.escapeHtml(menu.name) + (menu.soldOut ? '<span class="soldout-badge">품절</span>' : "") + "</h1>" +
       '<div class="detail-category">' + CafeUtils.escapeHtml(menu.category) + "</div>" +
       '<div class="detail-price">' + CafeUtils.formatPrice(menu.price) + "</div>" +

@@ -75,7 +75,7 @@
       return "이미지 없음";
     }
 
-    return "<img src=\"" + CafeUtils.escapeHtml(menu.image) + "\" alt=\"" +
+    return "<img src=\"" + CafeUtils.escapeHtml(CafeUtils.getMenuImageSrc(menu.image)) + "\" alt=\"" +
       CafeUtils.escapeHtml(menu.name) + "\">";
   }
 

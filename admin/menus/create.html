@@ -38,6 +38,12 @@
         <label for="description">설명</label>
         <textarea id="description" rows="3"></textarea>
       </div>
+      <div class="form-group">
+        <label for="image">메뉴 사진</label>
+        <input type="file" id="image" accept="image/*">
+        <p class="form-help">선택한 파일은 <code>images/menus/파일명</code> 경로로 저장됩니다.</p>
+        <div class="image-preview" id="image-preview">이미지 없음</div>
+      </div>
       <div id="form-error" class="form-error" style="display:none;"></div>
       <div class="form-actions">
         <button type="submit" class="btn btn-primary">등록</button>
