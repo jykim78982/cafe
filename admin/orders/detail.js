@@ -14,17 +14,27 @@
   var params = new URLSearchParams(window.location.search);
   var orderId = params.get("id");
   var detailCard = document.getElementById("detailCard");
+  var statusMessage = document.getElementById("statusMessage");
+  var statusMessageTimer = null;
 
-  function readOrders() {
+  function readRawOrders() {
     var raw = localStorage.getItem(ORDERS_KEY);
     if (raw === null) return [];
 
     try {
       var parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed.map(normalizeOrder) : [];
+      return Array.isArray(parsed) ? parsed : [];
     } catch (e) {
       return [];
     }
+  }
+
+  function saveOrders(orders) {
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  }
+
+  function readOrders() {
+    return readRawOrders().map(normalizeOrder);
   }
 
   function normalizeOrder(order, index) {
@@ -85,6 +95,29 @@
     return "status-" + CafeUtils.escapeHtml(status);
   }
 
+  function showStatusMessage(message) {
+    statusMessage.textContent = message;
+    statusMessage.hidden = false;
+    clearTimeout(statusMessageTimer);
+    statusMessageTimer = setTimeout(function () {
+      statusMessage.hidden = true;
+    }, 1800);
+  }
+
+  function updateOrderStatus(id, status) {
+    var rawOrders = readRawOrders();
+    var target = rawOrders.find(function (order, index) {
+      return String(order.id || "order-" + (index + 1)) === String(id);
+    });
+
+    if (!target) return null;
+
+    target.status = status;
+    target.updatedAt = new Date().toISOString();
+    saveOrders(rawOrders);
+    return getOrderById(id);
+  }
+
   function renderNotFound() {
     detailCard.innerHTML = "" +
       "<div class=\"empty-state\">" +
@@ -133,6 +166,21 @@
         "<div class=\"info-card\"><span>주문 상태</span><strong>" + CafeUtils.escapeHtml(getStatusLabel(order.status)) + "</strong></div>" +
         "<div class=\"info-card\"><span>총 수량</span><strong>" + itemCount + "개</strong></div>" +
       "</div>" +
+      "<section class=\"section\" aria-label=\"주문 상태 변경\">" +
+        "<div class=\"section-heading\">" +
+          "<h2>상태 변경</h2>" +
+          "<p>변경 즉시 저장됩니다</p>" +
+        "</div>" +
+        "<div class=\"info-card\">" +
+          "<label for=\"statusSelect\"><span>주문 상태</span></label>" +
+          "<select id=\"statusSelect\">" +
+            "<option value=\"pending\"" + (order.status === "pending" ? " selected" : "") + ">접수</option>" +
+            "<option value=\"preparing\"" + (order.status === "preparing" ? " selected" : "") + ">준비중</option>" +
+            "<option value=\"completed\"" + (order.status === "completed" ? " selected" : "") + ">완료</option>" +
+            "<option value=\"cancelled\"" + (order.status === "cancelled" ? " selected" : "") + ">취소</option>" +
+          "</select>" +
+        "</div>" +
+      "</section>" +
       "<section class=\"section\" aria-label=\"주문 메뉴\">" +
         "<div class=\"section-heading\">" +
           "<h2>주문 메뉴</h2>" +
@@ -145,6 +193,17 @@
         "<div class=\"total-row\"><span>할인/포인트</span><strong>0원</strong></div>" +
         "<div class=\"total-row final\"><span>총 금액</span><strong>" + CafeUtils.formatPrice(order.total) + "</strong></div>" +
       "</div>";
+
+    document.getElementById("statusSelect").addEventListener("change", function (event) {
+      var updatedOrder = updateOrderStatus(order.id, event.target.value);
+      if (!updatedOrder) {
+        showStatusMessage("주문 상태를 저장하지 못했습니다.");
+        return;
+      }
+
+      showStatusMessage("주문 상태가 저장되었습니다.");
+      renderDetail(updatedOrder);
+    });
   }
 
   var order = getOrderById(orderId);
