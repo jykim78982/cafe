@@ -80,28 +80,21 @@
   }
 
   function renderMenuCard(menu) {
-    var soldOut = menu.soldOut ? "<span class=\"soldout-chip\">품절</span>" : "";
+    var badge = menu.soldOut ? "<span class=\"menu-badge\">품절</span>" : "";
 
     return "" +
-      "<article class=\"menu-card glass\">" +
+      "<article class=\"menu-card" + (menu.soldOut ? " is-soldout" : "") + "\">" +
         "<a class=\"menu-visual\" href=\"detail.html?id=" + encodeURIComponent(menu.id) + "\">" +
+          badge +
           createImageMarkup(menu) +
         "</a>" +
         "<div class=\"menu-body\">" +
-          "<div class=\"menu-meta\">" +
-            "<span class=\"category-chip\">" + CafeUtils.escapeHtml(menu.category) + "</span>" +
-            soldOut +
-          "</div>" +
-          "<h3>" + CafeUtils.escapeHtml(menu.name) + "</h3>" +
+          "<span class=\"category-label\">" + CafeUtils.escapeHtml(menu.category) + "</span>" +
+          "<a href=\"detail.html?id=" + encodeURIComponent(menu.id) + "\"><h3>" + CafeUtils.escapeHtml(menu.name) + "</h3></a>" +
           "<p class=\"menu-desc\">" + CafeUtils.escapeHtml(menu.description) + "</p>" +
-          "<div class=\"menu-footer\">" +
-            "<strong class=\"price\">" + CafeUtils.formatPrice(menu.price) + "</strong>" +
-            "<div class=\"card-actions\">" +
-              "<a class=\"btn btn-outline\" href=\"detail.html?id=" + encodeURIComponent(menu.id) + "\">상세</a>" +
-              "<button class=\"btn btn-primary\" type=\"button\" data-cart-id=\"" + CafeUtils.escapeHtml(menu.id) + "\"" +
-                (menu.soldOut ? " disabled" : "") + ">담기</button>" +
-            "</div>" +
-          "</div>" +
+          "<strong class=\"price\">" + CafeUtils.formatPrice(menu.price) + "</strong>" +
+          "<button class=\"btn btn-primary btn-block add-btn\" type=\"button\" data-cart-id=\"" + CafeUtils.escapeHtml(menu.id) + "\"" +
+            (menu.soldOut ? " disabled" : "") + ">담기</button>" +
         "</div>" +
       "</article>";
   }
@@ -139,6 +132,7 @@
       menuId: menu.id,
       name: menu.name,
       price: menu.price,
+      image: menu.image,
       qty: 1
     });
     updateCartCount();

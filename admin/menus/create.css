@@ -1,5 +1,8 @@
 .admin-header {
-  background: var(--color-surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.94);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -7,13 +10,41 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  gap: var(--spacing);
+  min-height: 68px;
 }
 
 .logo {
-  font-size: 1.2rem;
-  font-weight: 700;
   color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.admin-nav a {
+  padding: 4px 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.admin-nav a[aria-current="page"],
+.admin-nav a:hover {
+  color: var(--color-primary);
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: var(--spacing);
+  color: var(--color-primary);
+  font-weight: 800;
 }
 
 .page {
@@ -63,11 +94,11 @@
   display: grid;
   place-items: center;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   margin-top: var(--spacing-sm);
   border: 1px dashed var(--color-border);
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--color-tile);
   color: var(--color-text-muted);
   overflow: hidden;
 }

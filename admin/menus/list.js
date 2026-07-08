@@ -38,10 +38,12 @@
         ? '<img src="' + CafeUtils.escapeHtml(CafeUtils.getMenuImageSrc(m.image)) + '" alt="' + CafeUtils.escapeHtml(m.name) + '">'
         : "";
 
+      var badge = m.soldOut ? '<span class="badge">품절</span>' : "";
+
       return (
         '<div class="glass menu-card' + (m.soldOut ? " is-soldout" : "") + '">' +
-          '<div class="thumb">' + image + "</div>" +
-          '<div class="name">' + CafeUtils.escapeHtml(m.name) + (m.soldOut ? " (품절)" : "") + "</div>" +
+          '<div class="thumb">' + badge + image + "</div>" +
+          '<div class="name">' + CafeUtils.escapeHtml(m.name) + "</div>" +
           '<div class="category">' + CafeUtils.escapeHtml(m.category) + "</div>" +
           '<div class="price">' + CafeUtils.formatPrice(m.price) + "</div>" +
           '<div class="actions">' +

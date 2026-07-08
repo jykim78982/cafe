@@ -36,9 +36,15 @@
     }, 1800);
   }
 
+  function renderThumb(item) {
+    if (!item.image) return "";
+    return "<img src=\"" + CafeUtils.escapeHtml(CafeUtils.getMenuImageSrc(item.image)) + "\" alt=\"" + CafeUtils.escapeHtml(item.name) + "\">";
+  }
+
   function renderRow(item) {
     return "" +
       '<article class="basket-row glass" data-menu-id="' + CafeUtils.escapeHtml(item.menuId) + '">' +
+        '<div class="item-thumb">' + renderThumb(item) + "</div>" +
         '<div class="item-info">' +
           "<h3>" + CafeUtils.escapeHtml(item.name) + "</h3>" +
           '<p class="unit-price">' + CafeUtils.formatPrice(item.price) + "</p>" +
