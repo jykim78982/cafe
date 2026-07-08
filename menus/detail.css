@@ -80,9 +80,8 @@
   display: grid;
   place-items: center;
   min-height: 360px;
-  border: 1px solid rgba(111, 78, 55, 0.1);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, #f6d7b8, #eee0d0 58%, #dbead7);
+  background: var(--color-tile);
   color: var(--color-text-muted);
   font-weight: 800;
   overflow: hidden;
@@ -103,20 +102,19 @@
 .category-chip,
 .soldout-chip {
   width: fit-content;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 5px 10px;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 800;
+  color: #fff;
 }
 
 .category-chip {
-  background: rgba(217, 140, 74, 0.16);
-  color: var(--color-primary);
+  background: var(--color-primary);
 }
 
 .soldout-chip {
-  background: rgba(192, 57, 43, 0.12);
-  color: var(--color-danger);
+  background: var(--color-danger);
 }
 
 .chip-row {
