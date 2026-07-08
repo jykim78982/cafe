@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var ORDERS_KEY = "cafeapp_orders";
+
   var basketList = document.getElementById("basketList");
   var emptyState = document.getElementById("emptyState");
   var summaryCard = document.getElementById("summaryCard");
@@ -10,6 +12,14 @@
   var checkoutButton = document.getElementById("checkoutButton");
   var toast = document.getElementById("toast");
   var toastTimer = null;
+
+  var paymentOverlay = document.getElementById("paymentOverlay");
+  var paymentCount = document.getElementById("paymentCount");
+  var paymentAmount = document.getElementById("paymentAmount");
+  var paymentActions = document.getElementById("paymentActions");
+  var paymentProcessing = document.getElementById("paymentProcessing");
+  var paymentCancel = document.getElementById("paymentCancel");
+  var paymentConfirm = document.getElementById("paymentConfirm");
 
   CafeData.init();
 
@@ -85,10 +95,71 @@
     }
   });
 
-  checkoutButton.addEventListener("click", function () {
-    if (CafeUtils.getCart().length === 0) return;
-    window.location.href = "../orders/list.html";
+  function generateOrderId() {
+    return "o_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  }
+
+  function createOrder(cart) {
+    var raw = localStorage.getItem(ORDERS_KEY);
+    var orders = [];
+    try {
+      var parsed = raw === null ? [] : JSON.parse(raw);
+      orders = Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      orders = [];
+    }
+
+    var order = {
+      id: generateOrderId(),
+      status: "pending",
+      createdAt: new Date().toISOString(),
+      total: CafeUtils.getCartTotal(),
+      items: cart.map(function (item) {
+        return { name: item.name, price: item.price, qty: item.qty };
+      })
+    };
+
+    orders.push(order);
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+    return order;
+  }
+
+  function openPaymentModal() {
+    var cart = CafeUtils.getCart();
+    if (cart.length === 0) return;
+
+    paymentCount.textContent = CafeUtils.getCartCount() + "개";
+    paymentAmount.textContent = CafeUtils.formatPrice(CafeUtils.getCartTotal());
+    paymentActions.hidden = false;
+    paymentProcessing.hidden = true;
+    paymentOverlay.hidden = false;
+  }
+
+  function closePaymentModal() {
+    paymentOverlay.hidden = true;
+  }
+
+  paymentCancel.addEventListener("click", closePaymentModal);
+
+  paymentOverlay.addEventListener("click", function (event) {
+    if (event.target === paymentOverlay) closePaymentModal();
   });
+
+  paymentConfirm.addEventListener("click", function () {
+    var cart = CafeUtils.getCart();
+    if (cart.length === 0) return;
+
+    paymentActions.hidden = true;
+    paymentProcessing.hidden = false;
+
+    setTimeout(function () {
+      var order = createOrder(cart);
+      CafeUtils.clearCart();
+      window.location.href = "../orders/detail.html?id=" + encodeURIComponent(order.id);
+    }, 900);
+  });
+
+  checkoutButton.addEventListener("click", openPaymentModal);
 
   render();
 })();
